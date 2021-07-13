@@ -41,9 +41,8 @@ Clean architecture design is implemented at the application. So the API has Doma
 I used Mediatr while implementing CQRS which helps a lot with its pipeline, request handler and event handler features. 
 I also used FluentValidation for validating requests and AutoMapper for mapping Domain objects to DTOs. EntityFrameworkCore is used for accessing database.
 
+## Authentication
 <detials>
-<summary>## Authentication</summary>
-
 For authentication and authorization, i used IdentityServer4 with .Net Core Identity. IdentityServer itself is not an authentication server so with .Net Core identity it also provides authentication by applying Open ID Connect and OAuth protocols.
 
 Authentication server and Item Trader API are handled as completely separated domains. The only thing these two domains share is the database. But as Domain Driven Design suggests, they have their own ubiquitous language. 

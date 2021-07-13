@@ -104,7 +104,8 @@ Auth Server : https://itemtrader-authserver.azurewebsites.net/account/login
     * GET : Return Codes -> 200 OK (Can accept querystring parameters.) Sample : GET /tradeitems?name=canta&pageNumber=1&pageSize=1
     <br/>
     Returns : 
-    ```{        
+    ```
+    {        
         "items": [
             {
             "id": 1,
@@ -118,7 +119,8 @@ Auth Server : https://itemtrader-authserver.azurewebsites.net/account/login
         "totalCount": 1,
         "hasPreviousPage": false,
         "hasNextPage": false        
-    }```
+    }
+    ```
 
 
     * GET /tradeitems/{id} : 

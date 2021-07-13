@@ -125,28 +125,28 @@ Auth Server : https://itemtrader-authserver.azurewebsites.net/account/login
 
     * GET /tradeitems/{id} : 
         Return Codes
-            * 200 OK with trade item
+            ** 200 OK with trade item
             * 404 Not Found
 
     * POST /tradeitems :
         Return Codes
-            * 201 Created with created tradeitem in the response body
+            ** 201 Created with created tradeitem in the response body
 
     * DELETE /tradeitems/{id} :
         Return Codes :
-            * 204 No Content
-            * 404 Not Found
+            ** 204 No Content
+            **404 Not Found
 
 
 * /proposals endpoints :
     * GET /proposals: 
         Return Codes
-            * 200 OK
+            ** 200 OK
 
     * GET /proposals/{id} :
         Return Codes :
-            * 200 OK with proposal
-            * 404 NOT Found
+            ** 200 OK with proposal
+            ** 404 NOT Found
 
     * POST /proposals :
         body : 
@@ -156,13 +156,13 @@ Auth Server : https://itemtrader-authserver.azurewebsites.net/account/login
             "requestedItemId": 2
         }        
         Return Codes :
-            * 201 Created
-            * 400 BasdRquest
+            ** 201 Created
+            ** 400 BasdRquest
     
     * PUT /proposals/{id}/Status :
         Status parameter psooible values (Active = 0, Cancelled = 1, Accepted = 2, Rejected = 4)
         Retrun Codes :
-            * 200 OK
-            * 400 BadRequest
+            ** 200 OK
+            ** 400 BadRequest
 
 

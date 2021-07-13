@@ -44,7 +44,8 @@ I also used FluentValidation for validating requests and AutoMapper for mapping 
 <br/>
 <br/>
 
-## Authentication
+<details open=open>
+<summary> ## Authentication </summary>
 
 For authentication and authorization, i used IdentityServer4 with .Net Core Identity. IdentityServer itself is not an authentication server so with .Net Core identity it also provides authentication by applying Open ID Connect and OAuth protocols.
 
@@ -57,6 +58,7 @@ extracts the claims from it, which is only the User Id in this case.
 
 Interactive UI will use authorization code flow to obtain access_token which is authorized to access ItemTraderAPI scope. 
 In Item Trader API perspective, if a request has valid access token, than the user should be authenticated already. And since no role based authorization is used, the user is capable to use all the endpoints, but only obtain related data with the user.
+<details>
 
 <br/>
 <br/>

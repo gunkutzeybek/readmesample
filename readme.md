@@ -1,25 +1,3 @@
-<!-- TABLE OF CONTENTS -->
-<details open="open">  
-  <ol>
-    <li>
-      <a href="#about-the-project">Part 1</a>      
-    </li>
-    <li>
-      <a href="#getting-started">Getting Started</a>
-      <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#installation">Installation</a></li>
-      </ul>
-    </li>
-    <li><a href="#usage">Usage</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#contributing">Contributing</a></li>
-    <li><a href="#license">License</a></li>
-    <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgements">Acknowledgements</a></li>
-  </ol>
-</details>
-
 
 
 <!-- Part 1 -->
@@ -44,8 +22,7 @@ I also used FluentValidation for validating requests and AutoMapper for mapping 
 <br/>
 <br/>
 
-<details open=open>
-<summary> ## Authentication </summary>
+## Authentication
 
 For authentication and authorization, i used IdentityServer4 with .Net Core Identity. IdentityServer itself is not an authentication server so with .Net Core identity it also provides authentication by applying Open ID Connect and OAuth protocols.
 
@@ -58,7 +35,6 @@ extracts the claims from it, which is only the User Id in this case.
 
 Interactive UI will use authorization code flow to obtain access_token which is authorized to access ItemTraderAPI scope. 
 In Item Trader API perspective, if a request has valid access token, than the user should be authenticated already. And since no role based authorization is used, the user is capable to use all the endpoints, but only obtain related data with the user.
-<details>
 
 <br/>
 <br/>
@@ -67,10 +43,11 @@ In Item Trader API perspective, if a request has valid access token, than the us
 
 There are some cases that two user wants to update same proposal at the same time. For that kind of situations, EntityFrameworkCore provides an optimistic locking mechanism. Since the app is operating on Status fields of records, i marked Status field as concurrency field. Doing this makes entity framework include this column as where clause for update and delete operations and if a change has occured since the entity is loaded in the context, it can't update or delete any data and determines a dirty data exists in the context. Throws an exception. These exceptions are catched in the system and converted to an appropriate message.
 
-
+<br/>
+<br/>
 
 <!-- Part 2 -->
-## Part 2
+# Part 2
 
 I used Azure as cloud platform. There are two app services running, one for Item Trader API and the other for Auth server. And also a SQL Server database exists again on Azure. 
 CI/Cd Pipeline is built with github actions and terraform. My initial intent was building the pipeline with Azure DevOps Pipeline but due to some increased abuse on pipelines parallel tasks (coin miners they say), they require a request to use which will be resulted in 2 or 3 days. This makes me turn my way to Github Actions. 
@@ -95,3 +72,51 @@ Steps for CI/CD pipeline are :
              I used both Github secrets and Terraform Cloud User and Environment Variables.        
     * Publish Item Trader API
     * Publish Auth Server
+    
+<br/>
+<br/>
+
+# App urls and how to
+
+Item Trader API : https://itemtrader-appservice.azurewebsites.net/swagger
+
+Auth Server : https://itemtrader-authserver.azurewebsites.net/account/login
+    
+<br/>
+<br/>
+
+## Steps for authenticating swagger UI
+
+* Visit this page : https://itemtrader-appservice.azurewebsites.net/swagger
+* At the Available authorizations pop-up enter "secret" in client_secret textbox. (This is the swagger s client dredentials at auth server.)
+* Select ItemTraderAPI scope (without this the auth server won't let you in.)
+* Click on Authorize. 
+* You will be redirected to AuthServers login page. 
+* Enter a username and password (you can find them below).
+* After a successful login, you'll be redirected back to swagger. Swagger now has the access token necessary to do requests on behalf of the logged in user.
+
+<br/>
+<br/>
+
+## API Refernce
+
+* /tradeitems endpoint
+    * GET : Return Codes -> 200 OK (Can accept querystring parameters.) Sample : GET /tradeitems?name=canta&pageNumber=1&pageSize=1
+    Returns : 
+    ```{        
+        "items": [
+            {
+            "id": 1,
+            "ownerId": "3813d77b-e04e-4a12-a036-fab1de9d16fb",
+            "name": "kapı",
+            "status": 0
+            }
+        ],
+        "pageIndex": 1,
+        "totalPages": 1,
+        "totalCount": 1,
+        "hasPreviousPage": false,
+        "hasNextPage": false        
+    }```
+
+

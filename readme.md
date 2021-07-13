@@ -43,6 +43,8 @@ I also used FluentValidation for validating requests and AutoMapper for mapping 
 
 ## Authentication
 <detials>
+<summary>For authentication and authorization...</summary>
+
 For authentication and authorization, i used IdentityServer4 with .Net Core Identity. IdentityServer itself is not an authentication server so with .Net Core identity it also provides authentication by applying Open ID Connect and OAuth protocols.
 
 Authentication server and Item Trader API are handled as completely separated domains. The only thing these two domains share is the database. But as Domain Driven Design suggests, they have their own ubiquitous language. 

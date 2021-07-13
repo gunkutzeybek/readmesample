@@ -55,6 +55,7 @@ extracts the claims from it, which is only the User Id in this case.
 Interactive UI will use authorization code flow to obtain access_token which is authorized to access ItemTraderAPI scope. 
 In Item Trader API perspective, if a request has valid access token, than the user should be authenticated already. And since no role based authorization is used, the user is capable to use all the endpoints, but only obtain related data with the user.
 </details>
+
 <br/>
 <br/>
 ** There are some cases that two user wants to update same proposal at the same time. For that kind of 

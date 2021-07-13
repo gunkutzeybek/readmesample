@@ -60,7 +60,10 @@ In Item Trader API perspective, if a request has valid access token, than the us
 
 <br/>
 <br/>
-** There are some cases that two user wants to update same proposal at the same time. For that kind of 
+
+## One small challenge
+
+There are some cases that two user wants to update same proposal at the same time. For that kind of situations, EntityFrameworkCore provides an optimistic locking mechanism. Since the app is operating on Status fields of records, i marked Status field as concurrency field. Doing this makes entity framework include this column as where clause for update and delete operations and if a change has occured since the entity is loaded in the context, it can't update or delete any data and determines a dirty data exists in the context. Throws an exception. These exceptions are catched in the system and converted to an appropriate message.
 
 
 
@@ -68,4 +71,21 @@ In Item Trader API perspective, if a request has valid access token, than the us
 ## Part 2
 
 I used Azure as cloud platform. There are two app services running, one for Item Trader API and the other for Auth server. And also a SQL Server database exists again on Azure. 
-CI/Cd Pipeline is built with github actions and terraform. My initial intent was building the pipeline with Azure DevOps Pipeline but due to some increased abuse on pipelines parallel tasks (coin miners they say), they 
+CI/Cd Pipeline is built with github actions and terraform. My initial intent was building the pipeline with Azure DevOps Pipeline but due to some increased abuse on pipelines parallel tasks (coin miners they say), they require a request to use which will be resulted in 2 or 3 days. This makes me turn my way to Github Actions. 
+
+Triggered with a push to master branch.
+Steps for CI/CD pipeline are :
+    
+    * Restore dependencies
+    * Build
+    * Run Tests
+    * Terraform init (initalizes workspace)
+    * Terraform validate (validates the terraform file)
+    * Terraform plan (creates a plan for resources to be provisioned or removed (Just a plan. No action happens at this step.))
+    * Terraform apply (applies the created plan. Resources are provisioned at this step.) If doesn't exsit, terraform provisions the following at azure.
+        * Resource group
+        * SQL Server (creates the database on it as well)
+        * Generates an app service plan
+        * Creates Two app services running under this plan. (One for Item Trader API and the other for Auth Server.) At this step connection strings and other sensitive data also create on app service. Those are not stored in source. I used both Github secrets and Terraform Cloud User and Environment Variables.        
+    * Publish Item Trader API
+    * Publish Auth Server

@@ -1,9 +1,8 @@
 <!-- TABLE OF CONTENTS -->
-<details open="open">
-  <summary>Table of Contents</summary>
+<details open="open">  
   <ol>
     <li>
-      <a href="#about-the-project">About The Project</a>      
+      <a href="#about-the-project">Part 1</a>      
     </li>
     <li>
       <a href="#getting-started">Getting Started</a>
@@ -23,10 +22,8 @@
 
 
 
-<!-- ABOUT THE PROJECT -->
-## About Item Trader Project
-
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+<!-- Part 1 -->
+## Part 1
 
 Item trader project is a web api project that provides endpoints for listing items to be used in trades. The project is built for an interactive UI (Native mobile apps or Web apps having backend or not) which will provide its users ability to trade their items.
 The application consists of trade items and proposals. An usual flow would be :
@@ -49,8 +46,8 @@ For authentication and authorization, i used IdentityServer4 with .Net Core Iden
 Authentication server and Item Trader API are handled as completely separated domains. The only thing these two domains share is the database. But as Domain Driven Design suggests, they have their own bounded contexts. 
 While an user is represented as an application user in authentication server, the same user is represented as a Trader in Item Trader API. 
 
-<!-- GETTING STARTED -->
-## Getting Started with the project
+<!-- Part 1 -->
+## Part 1
 
 
 

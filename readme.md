@@ -102,6 +102,7 @@ Auth Server : https://itemtrader-authserver.azurewebsites.net/account/login
 
 * /tradeitems endpoint
     * GET : Return Codes -> 200 OK (Can accept querystring parameters.) Sample : GET /tradeitems?name=canta&pageNumber=1&pageSize=1
+    <br/>
     Returns : 
     ```{        
         "items": [
@@ -118,5 +119,46 @@ Auth Server : https://itemtrader-authserver.azurewebsites.net/account/login
         "hasPreviousPage": false,
         "hasNextPage": false        
     }```
+
+
+    * GET /tradeitems/{id} : 
+        Return Codes
+            * 200 OK with trade item
+            * 404 Not Found
+
+    * POST /tradeitems :
+        Return Codes
+            * 201 Created with created tradeitem in the response body
+
+    * DELETE /tradeitems/{id} :
+        Return Codes :
+            * 204 No Content
+            * 404 Not Found
+
+
+* /proposals endpoints :
+    * GET /proposals: 
+        Return Codes
+            * 200 OK
+
+    * GET /proposals/{id} :
+        Return Codes :
+            * 200 OK with proposal
+            * 404 NOT Found
+
+    * POST /proposals :
+        body : 
+        ```{
+            "offeredItemId": 4,
+            "requestedItemId": 2
+        }```
+        Return Codes :
+            * 201 Created
+            * 400 BasdRquest
+    
+    * PUT /proposals/{id}/Status :
+        Retrun Codes :
+            * 200 OK
+            * 400 BadRequest
 
 

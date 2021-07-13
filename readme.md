@@ -41,9 +41,10 @@ Clean architecture design is implemented at the application. So the API has Doma
 I used Mediatr while implementing CQRS which helps a lot with its pipeline, request handler and event handler features. 
 I also used FluentValidation for validating requests and AutoMapper for mapping Domain objects to DTOs. EntityFrameworkCore is used for accessing database.
 
+<br/>
+<br/>
+
 ## Authentication
-<detials>
-<summary>For authentication and authorization...</summary>
 
 For authentication and authorization, i used IdentityServer4 with .Net Core Identity. IdentityServer itself is not an authentication server so with .Net Core identity it also provides authentication by applying Open ID Connect and OAuth protocols.
 
@@ -56,7 +57,6 @@ extracts the claims from it, which is only the User Id in this case.
 
 Interactive UI will use authorization code flow to obtain access_token which is authorized to access ItemTraderAPI scope. 
 In Item Trader API perspective, if a request has valid access token, than the user should be authenticated already. And since no role based authorization is used, the user is capable to use all the endpoints, but only obtain related data with the user.
-</details>
 
 <br/>
 <br/>
@@ -86,6 +86,10 @@ Steps for CI/CD pipeline are :
         * Resource group
         * SQL Server (creates the database on it as well)
         * Generates an app service plan
-        * Creates Two app services running under this plan. (One for Item Trader API and the other for Auth Server.) At this step connection strings and other sensitive data also create on app service. Those are not stored in source. I used both Github secrets and Terraform Cloud User and Environment Variables.        
+        * Creates Two app services running under this plan. 
+            (One for Item Trader API and the other for Auth Server) 
+            At this step connection strings and other sensitive data also create on app service.
+             Those are not stored in source. 
+             I used both Github secrets and Terraform Cloud User and Environment Variables.        
     * Publish Item Trader API
     * Publish Auth Server

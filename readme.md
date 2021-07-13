@@ -23,7 +23,7 @@
 
 
 <!-- Part 1 -->
-## Part 1
+# Part 1
 
 Item trader project is a web api project that provides endpoints for listing items to be used in trades. The project is built for an interactive UI (Native mobile apps or Web apps having backend or not) which will provide its users ability to trade their items.
 The application consists of trade items and proposals. An usual flow would be :
@@ -41,7 +41,7 @@ Clean architecture design is implemented at the application. So the API has Doma
 I used Mediatr while implementing CQRS which helps a lot with its pipeline, request handler and event handler features. 
 I also used FluentValidation for validating requests and AutoMapper for mapping Domain objects to DTOs. EntityFrameworkCore is used for accessing database.
 
-# Authentication
+## Authentication
 
 For authentication and authorization, i used IdentityServer4 with .Net Core Identity. IdentityServer itself is not an authentication server so with .Net Core identity it also provides authentication by applying Open ID Connect and OAuth protocols.
 
@@ -54,8 +54,9 @@ extracts the claims from it, which is only the User Id in this case.
 
 Interactive UI will use authorization code flow to obtain access_token which is authorized to access ItemTraderAPI scope. 
 In Item Trader API perspective, if a request has valid access token, than the user should be authenticated already. And since no role based authorization is used, the user is capable to use all the endpoints, but only obtain related data with the user.
-
-
+<br/>
+<br/>
+** There are some cases that two user wants to update same proposal at the same time. For that kind of 
 
 
 

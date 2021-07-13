@@ -102,7 +102,7 @@ Auth Server : https://itemtrader-authserver.azurewebsites.net/account/login
 
 * /tradeitems endpoint
     * GET : Return Codes -> 200 OK (Can accept querystring parameters.) Sample : GET /tradeitems?name=canta&pageNumber=1&pageSize=1
-    <br/>
+    
     Returns : 
     
     {        
@@ -121,12 +121,10 @@ Auth Server : https://itemtrader-authserver.azurewebsites.net/account/login
         "hasNextPage": false        
     }
     
-
-
     * GET /tradeitems/{id} : 
         Return Codes
             ** 200 OK with trade item
-            * 404 Not Found
+            ** 404 Not Found
 
     * POST /tradeitems :
         Return Codes
